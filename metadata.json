@@ -1,0 +1,9 @@
+{
+  "name": "爱儿美月子中心官方小程序",
+  "description": "高端母婴服务品牌展示与智能获客系统，包含小红书风格内容中心与AI销售辅助智能体。",
+  "requestFramePermissions": [
+    "camera",
+    "microphone",
+    "geolocation"
+  ]
+}
