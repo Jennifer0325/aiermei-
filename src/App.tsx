@@ -358,23 +358,47 @@ const ContentCenter = ({ onAction, profile }: { onAction: (path: string) => void
         </div>
       </div>
 
-      {/* Waterfall Layout with Wireframes */}
-      <div className="px-6 grid grid-cols-2 gap-4">
-        {[1, 2, 3, 4].map((_, idx) => (
+      {/* WeChat Style Article List */}
+      <div className="px-6 space-y-4">
+        {CONTENT_ITEMS.filter(post => post.category === activeTab).map((post, idx) => (
           <motion.div
-            key={idx}
+            key={post.id}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: idx * 0.05 }}
-            className="bg-white rounded-3xl overflow-hidden border border-gray-100 shadow-sm"
+            className="bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm"
           >
-            <div className="aspect-[3/4] bg-gray-50 flex flex-col items-center justify-center p-4 text-center border-b border-gray-50">
-              <LayoutGrid className="w-8 h-8 text-gray-200 mb-2" />
-              <p className="text-[10px] text-gray-300 font-bold uppercase tracking-tighter">内容线框</p>
+            <div className="aspect-[21/9] bg-gray-100 relative">
+              <img 
+                src={post.cover} 
+                alt={post.title}
+                className="w-full h-full object-cover opacity-80"
+                referrerPolicy="no-referrer"
+              />
+              {post.type === 'video' && (
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="w-10 h-10 bg-black/30 backdrop-blur-md rounded-full flex items-center justify-center">
+                    <Play className="w-5 h-5 text-white fill-current" />
+                  </div>
+                </div>
+              )}
             </div>
-            <div className="p-4">
-              <div className="h-3 bg-gray-100 rounded-full w-full mb-2" />
-              <div className="h-3 bg-gray-100 rounded-full w-2/3" />
+            <div className="p-5">
+              <h3 className="text-base font-bold text-gray-900 mb-3 leading-snug">
+                {post.title}
+              </h3>
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <div className="w-5 h-5 bg-rose-50 rounded-full flex items-center justify-center text-[8px] font-bold text-rose-400 border border-rose-100">
+                    {post.author[0]}
+                  </div>
+                  <span className="text-[10px] text-gray-400 font-medium">{post.author}</span>
+                </div>
+                <div className="flex items-center gap-1 text-gray-300">
+                  <Heart className="w-3 h-3" />
+                  <span className="text-[10px] font-bold">{post.likes}</span>
+                </div>
+              </div>
             </div>
           </motion.div>
         ))}
