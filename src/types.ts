@@ -12,7 +12,7 @@ export interface ContentItem {
   title: string;
   cover: string;
   type: 'image' | 'video';
-  category: 'pregnancy' | 'postpartum' | 'parenting';
+  category: 'pregnancy' | 'postpartum' | 'parenting' | 'nanny';
   author: string;
   likes: number;
 }
